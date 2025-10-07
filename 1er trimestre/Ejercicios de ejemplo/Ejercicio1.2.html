@@ -1,1 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Selector de Color</title>
+</head>
+<body>
+  <h2>Selecciona un color:</h2>
 
+  
+  <select id="colorSelect">
+    <option value="">--Selecciona un color--</option>
+    <option value="Rojo">Rojo</option>
+    <option value="Verde">Verde</option>
+    <option value="Azul">Azul</option>
+    <option value="Amarillo">Amarillo</option>
+    <option value="Naranja">Naranja</option>
+  </select>
+
+  <script>
+   
+    document.addEventListener('DOMContentLoaded', () => {
+      const colorSelect = document.getElementById('colorSelect');
+
+      
+      colorSelect.addEventListener('change', function() {
+        const colorSeleccionado = this.value;
+        console.log('Color seleccionado:', colorSeleccionado);
+        alert('Color seleccionado: ' + colorSeleccionado); 
+      });
+    });
+  </script>
+</body>
+</html>
