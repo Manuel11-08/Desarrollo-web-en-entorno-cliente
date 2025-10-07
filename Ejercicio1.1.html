@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Solicitar y mostrar dato</title>
+</head>
+<body>
+    <h1>Ejemplo de prompt en HTML</h1>
+
+    
+    <p id="resultado"></p>
+
+   
+    <button onclick="pedirDato()">Ingresa un dato</button>
+
+    <script>
+        function pedirDato() {
+           
+            let dato = prompt("Por favor, ingresa algo:");
+
+          
+            if(dato !== null && dato !== "") {
+              
+                document.getElementById("resultado").innerHTML = "Tu dato es: " + dato;
+            } else {
+                document.getElementById("resultado").innerHTML = "No ingresaste ningún dato.";
+            }
+        }
+    </script>
+</body>
+</html>
