@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mostrar Texto en Div</title>
+
+</head>
+<body>
+  <h2>Escribe un texto </h2>
+
+  
+  <input type="text" id="textoInput" placeholder="Escribe algo...">
+
+  <button id="mostrarBtn">Mostrar</button>
+
+  
+  <div id="resultado"></div>
+
+  <script>
+   
+    const input = document.getElementById('textoInput');
+    const boton = document.getElementById('mostrarBtn');
+    const divResultado = document.getElementById('resultado');
+
+   
+    boton.addEventListener('click', () => {
+      const texto = input.value; 
+      divResultado.textContent = texto; 
+    });
+  </script>
+</body>
+</html>
