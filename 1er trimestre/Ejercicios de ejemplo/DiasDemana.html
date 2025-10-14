@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Días de la semana</title>
+</head>
+<body>
+<script>
+    let dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+
+   
+    let longitudes = dias.map(dia => dia.length);
+    console.log("Longitudes de los días:", longitudes);
+
+    
+    let sumaDias = longitudes.reduce((acumulador, len) => acumulador + len, 0);
+    console.log("Suma total de letras:", sumaDias);
+
+   
+    let maxLen = Math.max(...longitudes);
+    let diasMasLargos = dias.filter(dia => dia.length === maxLen);
+    console.log("Día(s) más largo(s):", diasMasLargos);
+
+    
+    let minLen = Math.min(...longitudes);
+    let diasMasCortos = dias.filter(dia => dia.length === minLen);
+    console.log("Día(s) más corto(s):", diasMasCortos);
+
+</script>
+</body>
+</html>
