@@ -1,1 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Función de flecha aleatoria</title>
+</head>
+<body>
+    <h1>Generador de número aleatorio</h1>
+    <p id="resultado"></p>
+    <button onclick="probarFuncion()">Generar número</button>
+
+    <script>
+        // Definir la función de flecha
+        const numeroAleatorio = (max) => {
+            return Math.floor(Math.random() * max) + 1;
+        };
+
+        // Función para probarla y mostrar el resultado
+        function probarFuncion() {
+            const valor = parseInt(prompt("Ingresa un número entero:"));
+            if (!isNaN(valor) && valor > 0) {
+                const aleatorio = numeroAleatorio(valor);
+                document.getElementById("resultado").innerHTML = 
+                    `Número aleatorio entre 1 y ${valor}: <strong>${aleatorio}</strong>`;
+            } else {
+                alert("Por favor, ingresa un número entero válido.");
+            }
+        }
+    </script>
+</body>
+</html>
 
