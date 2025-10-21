@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+const numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+
+
+const numeroUsuario = parseInt(prompt("Adivina un número entre 1 y 10:"), 10);
+
+if (numeroUsuario === numeroAleatorio) {
+  alert("¡Buen trabajo! 🎉");
+} else {
+  alert(`No coincide 😔. El número correcto era ${numeroAleatorio}.`);
+}
+
+    </script>
+</body>
+</html>
