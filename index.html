@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Desarrollo Web en Entorno Cliente</title>
   <link rel="stylesheet" href="estilo.css">
-  <style>
-    details { margin-left: 20px; }
-    summary { cursor: pointer; font-weight: bold; }
-    ul { margin-left: 30px; }
-  </style>
+
 </head>
 <body>
   <header>
@@ -19,6 +15,7 @@
   <main>
     <section>
       <h2>Trimestres</h2>
+
       <details>
         <summary>1er Trimestre</summary>
         <details>
@@ -36,5 +33,18 @@
   <footer>
     &copy; 2025 Desarrollo Web en Entorno Cliente
   </footer>
+
+  <script>
+    // Animación suave al abrir/cerrar los <details>
+    document.querySelectorAll("details").forEach(detail => {
+      detail.addEventListener("toggle", e => {
+        if (detail.open) {
+          detail.classList.add("open");
+        } else {
+          detail.classList.remove("open");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
