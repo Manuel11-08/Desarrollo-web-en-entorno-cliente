@@ -1,119 +1,109 @@
 /* -------------------------------
-   ESTILOS BASE
+   ESTILOS BASE MODERNOS
 ---------------------------------*/
 body {
   font-family: "Segoe UI", Roboto, sans-serif;
-  background-color: #f4f6f9;
+  background-color: #f5f6ff;
   margin: 0;
   padding: 0;
-  color: #333;
+  color: #2e2e3a;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 header {
-  background-color: #007acc;
+  background: linear-gradient(90deg, #6c63ff, #343a69);
   color: white;
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
 }
 
 main {
   max-width: 800px;
-  margin: 2rem auto;
+  margin: 2.5rem auto;
   background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 14px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
 
 h2 {
-  border-bottom: 2px solid #007acc;
-  padding-bottom: 0.5rem;
-  color: #007acc;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  margin: 0.5rem 0;
-}
-
-a {
-  text-decoration: none;
-  color: #007acc;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  text-decoration: underline;
-  color: #005c99;
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #555;
-  background-color: #f0f0f0;
-  margin-top: 2rem;
+  border-bottom: 3px solid #6c63ff;
+  padding-bottom: 0.6rem;
+  color: #343a69;
+  font-size: 1.5rem;
+  margin-top: 0;
 }
 
 /* -------------------------------
-   MEJORAS VISUALES
+   ENLACES
 ---------------------------------*/
-section {
-  margin-top: 1.5rem;
+a {
+  text-decoration: none;
+  color: #6c63ff;
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
+a:hover {
+  color: #4b47d1;
+  text-decoration: underline;
+  transform: translateX(3px);
+}
+
+/* -------------------------------
+   DETAILS & SUMMARY
+---------------------------------*/
 details {
-  background: #f9fbfd;
-  border: 1px solid #dbe4ef;
-  border-radius: 10px;
+  background: #f9f9ff;
+  border: 1px solid #d6d6f5;
+  border-radius: 12px;
   margin: 1rem 0;
   overflow: hidden;
   transition: all 0.3s ease;
 }
 
 details[open] {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(108, 99, 255, 0.15);
 }
 
 summary {
   cursor: pointer;
   font-weight: 600;
-  padding: 1rem 1.2rem;
+  padding: 1rem 1.3rem;
   font-size: 1.1rem;
-  color: #007acc;
+  color: #343a69;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: white;
-  transition: background 0.2s ease;
+  background: #fff;
+  transition: background 0.3s ease;
 }
 
 summary:hover {
-  background: #eef6ff;
+  background: #ecebff;
 }
 
 summary::after {
   content: "▶";
   font-size: 0.9rem;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #6c63ff;
 }
 
 details[open] > summary::after {
   transform: rotate(90deg);
+  color: #4b47d1;
 }
 
 ul {
+  list-style-type: none;
   padding: 0 1.5rem 1rem;
   animation: fadeIn 0.4s ease;
 }
@@ -122,25 +112,41 @@ li {
   margin: 0.4rem 0;
 }
 
-/* Animación de aparición */
+/* -------------------------------
+   FOOTER
+---------------------------------*/
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.95rem;
+  color: #555;
+  background-color: #efefff;
+  margin-top: 3rem;
+  border-top: 2px solid #d6d6f5;
+}
+
+/* -------------------------------
+   ANIMACIONES
+---------------------------------*/
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 /* -------------------------------
-   MODO RESPONSIVE
+   RESPONSIVE
 ---------------------------------*/
 @media (max-width: 600px) {
   main {
     padding: 1.5rem;
+    margin: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
   }
 
   summary {
     font-size: 1rem;
-  }
-
-  h1 {
-    font-size: 1.6rem;
   }
 }
