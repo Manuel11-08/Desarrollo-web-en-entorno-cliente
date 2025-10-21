@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   
+  function protege_email(email) {
+  if (!email || typeof email !== 'string') return '';
+  email = email.trim();
+  const at = email.indexOf('@');
+  if (at <= 0) return email; // no es un email válido
+
+  const local = email.slice(0, at);
+  const domain = email.slice(at + 1);
+  const visible = local.slice(0, Math.min(3, local.length)); // hasta 3 caracteres visibles
+
+  return `${visible}...@${domain}`;
+}
+
+// Pedir al usuario su correo
+const usuarioEmail = prompt("Introduce tu correo electrónico:");
+const emailProtegido = protege_email(usuarioEmail);
+
+// Mostrar el correo protegido
+console.log("Correo protegido:", emailProtegido);
+alert("Correo protegido: " + emailProtegido);
+
+
+    </script>
+</body>
+</html>
