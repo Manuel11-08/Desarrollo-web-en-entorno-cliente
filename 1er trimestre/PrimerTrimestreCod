@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1er Trimestre</title>
+    <link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+    <header>
+        <h1>1er Trimestre</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Temas disponibles</h2>
+            <ul>
+                <li><a href="tema 2/index.html">Tema 2</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Desarrollo Web en Entorno Cliente
+    </footer>
+</body>
+</html>
