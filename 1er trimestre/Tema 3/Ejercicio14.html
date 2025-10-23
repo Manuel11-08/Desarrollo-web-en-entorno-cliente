@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+ function insert(cadenaPrincipal, cadenaAInsertar = '', posicion = 1) {
+  if (posicion < 1) posicion = 1;
+  let index = posicion - 1;
+  return cadenaPrincipal.slice(0, index) + cadenaAInsertar + ' ' + cadenaPrincipal.slice(index);
+}
+
+let cadenaPrincipal = prompt("Introduce la cadena principal:");
+let cadenaAInsertar = prompt("Introduce la cadena que deseas insertar:");
+let posicion = prompt("Introduce la posición (por defecto 1):");
+
+if (posicion === "" || isNaN(posicion)) posicion = 1;
+else posicion = parseInt(posicion);
+
+let resultado = insert(cadenaPrincipal, cadenaAInsertar, posicion);
+alert("Resultado: " + resultado);
+console.log(resultado);
+
+
+
+    </script>
+</body>
+</html>
