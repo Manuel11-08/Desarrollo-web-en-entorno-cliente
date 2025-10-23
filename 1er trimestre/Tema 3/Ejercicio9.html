@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function capitalizarPrimeraLetra(cadena) {
+  return cadena
+    .split(' ') 
+    .map(palabra => {
+      if (palabra.length === 0) return palabra; 
+      return palabra.charAt(0).toUpperCase() + palabra.slice(1);
+    })
+    .join(' ');
+}
+
+
+let textoUsuario = prompt("Escribe una frase:");
+let resultado = capitalizarPrimeraLetra(textoUsuario);
+
+
+console.log(resultado);
+alert("Resultado: " + resultado);
+
+
+    
+    </script>
+</body>
+</html>
