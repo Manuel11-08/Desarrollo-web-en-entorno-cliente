@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function contarSubcadena(texto, subcadena) {
+  let contador = 0;
+  let posicion = texto.indexOf(subcadena);
+
+  while (posicion !== -1) {
+    contador++;
+    posicion = texto.indexOf(subcadena, posicion + subcadena.length);
+  }
+  return contador;
+}
+
+// Pedir datos al usuario
+let frase = prompt("Ingresa una frase:");
+let buscar = prompt("Ingresa la palabra o subcadena que quieres contar:");
+
+// Mostrar resultado
+let resultado = contarSubcadena(frase, buscar);
+alert(`La subcadena "${buscar}" aparece ${resultado} veces.`);
+
+  </script>
+</body>
+</html>
