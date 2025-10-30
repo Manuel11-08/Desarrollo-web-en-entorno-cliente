@@ -1,71 +1,229 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Desarrollo Web en Entorno Cliente</title>
-  <link rel="stylesheet" href="estilo.css">
+  <meta name="theme-color" content="#6c63ff" />
+  <link rel="stylesheet" href="estilo.css" />
 </head>
 <body>
-  <header>
-    <h1>Desarrollo Web en Entorno Cliente</h1>
+  <!-- Enlace para saltar directo al contenido con lector de pantalla/teclado -->
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <h1 class="title">Desarrollo Web en Entorno Cliente</h1>
+
+      <div class="header-actions" role="group" aria-label="Acciones de la página">
+        <button id="toggle-theme" class="btn ghost" type="button" aria-pressed="false" title="Alternar tema (claro/oscuro)">
+          <span class="icon" aria-hidden="true">🌙</span>
+          <span class="btn-text">Tema</span>
+        </button>
+
+        <button id="expand-all" class="btn ghost" type="button" title="Expandir todos los apartados">
+          <span class="icon" aria-hidden="true">➕</span>
+          <span class="btn-text">Expandir</span>
+        </button>
+
+        <button id="collapse-all" class="btn ghost" type="button" title="Contraer todos los apartados">
+          <span class="icon" aria-hidden="true">➖</span>
+          <span class="btn-text">Contraer</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="search-wrap">
+      <label class="search-label" for="filtro">Buscar ejercicios</label>
+      <input id="filtro" class="search-input" type="search" placeholder="Filtrar por tema o nombre de ejercicio..." autocomplete="off" />
+      <div id="search-count" class="search-count" aria-live="polite"></div>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>Trimestres</h2>
+  <main id="contenido" class="container" role="main">
+    <section aria-labelledby="trimestres-heading">
+      <h2 id="trimestres-heading">Trimestres</h2>
 
-      <details>
-        <summary>1er Trimestre</summary>
+      <!-- TRIMESTRE 1 -->
+      <details class="accordion" id="tri1">
+        <summary class="accordion__summary">
+          <span class="accordion__title">1er Trimestre</span>
+          <span class="badge" data-count>0</span>
+        </summary>
 
-      
-        <details>
-          <summary>Tema 2</summary>
-          <ul>
+        <!-- TEMA 2 -->
+        <details class="accordion nested" id="tri1-tema2">
+          <summary class="accordion__summary">
+            <span class="accordion__title">Tema 2</span>
+            <span class="badge" data-count>0</span>
+          </summary>
+          <ul class="link-list">
             <li><a href="1er trimestre/Tema 2/Ejercicio1.1.html">Ejercicio 1.1</a></li>
-            <li><a href="1er trimestre/Tema 2/Ejercicio1.2(Calculadora).html">Ejercicio 1.2</a></li>
-            <li><a href="1er trimestre/Tema 2/Ejercicio1.3(MAP).html">Ejercicio 1.3</a></li>
-            <li><a href="1er trimestre/Tema 2/Ejercicio8(numAleatorio).html">Ejercicio 8</a></li>
-            <li><a href="1er trimestre/Tema 2/Ejercicio9(diasNavidad).html">Ejercicio 9</a></li>
-            <li><a href="1er trimestre/Tema 2/Ejercicio11(CambiarTemp).html">Ejercicio 11</a></li>
+            <li><a href="1er trimestre/Tema 2/Ejercicio1.2(Calculadora).html">Ejercicio 1.2 (Calculadora)</a></li>
+            <li><a href="1er trimestre/Tema 2/Ejercicio1.3(MAP).html">Ejercicio 1.3 (MAP)</a></li>
+            <li><a href="1er trimestre/Tema 2/Ejercicio8(numAleatorio).html">Ejercicio 8 (Número aleatorio)</a></li>
+            <li><a href="1er trimestre/Tema 2/Ejercicio9(diasNavidad).html">Ejercicio 9 (Días Navidad)</a></li>
+            <li><a href="1er trimestre/Tema 2/Ejercicio11(CambiarTemp).html">Ejercicio 11 (Cambiar temperatura)</a></li>
           </ul>
         </details>
 
-       
-        <details>
-          <summary>Tema 3</summary>
-          <ul>
+        <!-- TEMA 3 -->
+        <details class="accordion nested" id="tri1-tema3">
+          <summary class="accordion__summary">
+            <span class="accordion__title">Tema 3</span>
+            <span class="badge" data-count>0</span>
+          </summary>
+          <ul class="link-list">
             <li><a href="1er trimestre/Tema 3/Ejercicio4.html">Ejercicio 4</a></li>
             <li><a href="1er trimestre/Tema 3/Ejercicio6.html">Ejercicio 6</a></li>
             <li><a href="1er trimestre/Tema 3/Ejercicio9.html">Ejercicio 9</a></li>
             <li><a href="1er trimestre/Tema 3/Ejercicio14.html">Ejercicio 14</a></li>
-            <li><a href="1er trimestre/Tema 3/18-contar-subcadena.html">Ejercicio 18</a></li>
-            <li><a href="1er trimestre/Tema 3/29-buscar-palabra.html">Ejercicio 29</a></li>
-            
-            
+            <li><a href="1er trimestre/Tema 3/18-contar-subcadena.html">Ejercicio 18 (Contar subcadena)</a></li>
+            <li><a href="1er trimestre/Tema 3/29-buscar-palabra.html">Ejercicio 29 (Buscar palabra)</a></li>
           </ul>
         </details>
-
       </details>
 
+      <!-- Aquí podrías añadir más <details> para 2º y 3º trimestre reutilizando los mismos estilos -->
     </section>
   </main>
 
-  <footer>
-    &copy; 2025 Desarrollo Web en Entorno Cliente
+  <footer class="site-footer" role="contentinfo">
+    <small>&copy; 2025 Desarrollo Web en Entorno Cliente</small>
+    <button id="back-to-top" class="btn to-top" type="button" title="Volver arriba" aria-label="Volver arriba">↑</button>
   </footer>
 
   <script>
+    // ---------- Utilidades ----------
+    const $ = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-    document.querySelectorAll("details").forEach(detail => {
-      detail.addEventListener("toggle", e => {
-        if (detail.open) {
-          detail.classList.add("open");
-        } else {
-          detail.classList.remove("open");
+    // ---------- Persistencia de tema ----------
+    const root = document.documentElement;
+    const btnTheme = $('#toggle-theme');
+    const THEME_KEY = 'dwc_theme';
+    const applyTheme = (mode) => {
+      root.dataset.theme = mode; // [data-theme="light"|"dark"]
+      const dark = mode === 'dark';
+      btnTheme.setAttribute('aria-pressed', String(dark));
+      btnTheme.querySelector('.icon').textContent = dark ? '☀️' : '🌙';
+    };
+    const stored = localStorage.getItem(THEME_KEY);
+    const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(stored || (prefersDark ? 'dark' : 'light'));
+    btnTheme.addEventListener('click', () => {
+      const next = (root.dataset.theme === 'dark') ? 'light' : 'dark';
+      localStorage.setItem(THEME_KEY, next);
+      applyTheme(next);
+    });
+
+    // ---------- Contadores de ejercicios ----------
+    function updateBadges() {
+      $$('details').forEach(d => {
+        const list = $('ul.link-list', d);
+        const badge = $('[data-count]', d);
+        if (badge) {
+          const count = list ? list.querySelectorAll('a').length : $$('.nested', d).length;
+          badge.textContent = count;
+          badge.title = count + (list ? ' ejercicio(s)' : ' tema(s)');
+        }
+      });
+    }
+    updateBadges();
+
+    // ---------- Estado abierto/cerrado + acordeón por nivel ----------
+    const OPEN_KEY = 'dwc_open_ids';
+    const openSet = new Set(JSON.parse(localStorage.getItem(OPEN_KEY) || '[]'));
+    $$('details').forEach(d => { if (openSet.has(d.id)) d.open = true; });
+
+    function saveOpenState() {
+      const ids = $$('details').filter(d => d.id && d.open).map(d => d.id);
+      localStorage.setItem(OPEN_KEY, JSON.stringify(ids));
+    }
+
+    // Acordeón por hermanos (un abierto por nivel)
+    $$('details').forEach(d => {
+      d.addEventListener('toggle', () => {
+        if (d.open) {
+          // cerrar hermanos al mismo nivel
+          const parent = d.parentElement;
+          $$('.accordion', parent).forEach(sib => {
+            if (sib !== d && sib.open) sib.open = false;
+          });
+        }
+        d.classList.toggle('open', d.open);
+        saveOpenState();
+      });
+    });
+
+    // ---------- Expandir / Contraer todo ----------
+    $('#expand-all').addEventListener('click', () => {
+      $$('details.accordion').forEach(d => d.open = true);
+      saveOpenState();
+    });
+    $('#collapse-all').addEventListener('click', () => {
+      $$('details.accordion').forEach(d => d.open = false);
+      saveOpenState();
+    });
+
+    // ---------- Filtro de búsqueda ----------
+    const input = $('#filtro');
+    const countEl = $('#search-count');
+    function normaliza(txt) {
+      return txt.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+    }
+    function filtrar() {
+      const q = normaliza(input.value.trim());
+      let visibles = 0;
+
+      // Mostrar/ocultar <li> según coincidencia y abrir temas que tengan resultados
+      $$('details.accordion.nested').forEach(tema => {
+        const items = $$('li', tema);
+        let hayCoincidencias = false;
+
+        items.forEach(li => {
+          const t = normaliza(li.textContent);
+          const ok = !q || t.includes(q);
+          li.style.display = ok ? '' : 'none';
+          if (ok) hayCoincidencias = true;
+        });
+
+        // si hay coincidencias, abrir el tema
+        tema.open = hayCoincidencias || !q ? tema.open : false;
+        tema.style.display = hayCoincidencias || !q ? '' : 'none';
+        if (hayCoincidencias) visibles += items.filter(li => li.style.display !== 'none').length;
+      });
+
+      // Mostrar/ocultar trimestres según sus temas visibles
+      $$('details.accordion:not(.nested)').forEach(trim => {
+        const visibleTemas = $$('.nested', trim).some(t => t.style.display !== 'none');
+        trim.style.display = visibleTemas || !q ? '' : 'none';
+        if (q && visibleTemas) trim.open = true;
+      });
+
+      countEl.textContent = q ? `${visibles} resultado(s)` : '';
+      updateBadges();
+    }
+    input.addEventListener('input', filtrar);
+
+    // ---------- Accesibilidad de teclado en <summary> ----------
+    // Permite activar con Enter/Espacio correctamente en algunos navegadores antiguos
+    $$('summary').forEach(sum => {
+      sum.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          sum.click();
         }
       });
     });
+
+    // ---------- Volver arriba ----------
+    const toTop = $('#back-to-top');
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    document.addEventListener('scroll', () => {
+      toTop.hidden = window.scrollY < 400;
+    }, { passive: true });
+    toTop.hidden = true;
   </script>
 </body>
 </html>
