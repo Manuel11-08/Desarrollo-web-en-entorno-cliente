@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  function palabra_búsqueda(texto, palabra) {
+  let contador = 0;
+  let index = texto.indexOf(palabra);
+
+  while (index !== -1) {
+    contador++;
+    index = texto.indexOf(palabra, index + palabra.length);
+  }
+
+  return contador;
+}
+
+// Pedimos los datos al usuario
+let frase = prompt("Ingresa una frase:");
+let palabra = prompt("Ingresa la palabra que quieres buscar:");
+
+// Ejecutamos y mostramos el resultado
+let resultado = palabra_búsqueda(frase, palabra);
+alert(`'${palabra}' se encontró ${resultado} veces.`);
+
+  </script>
+</body>
+</html>
