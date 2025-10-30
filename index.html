@@ -1,45 +1,97 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Desarrollo Web en Entorno Cliente</title>
-  <meta name="theme-color" content="#6c63ff" />
+  <title>DWEC · Índice de Ejercicios</title>
+  <meta name="theme-color" content="#7c5cff" />
   <link rel="stylesheet" href="estilo.css" />
 </head>
 <body>
-  <!-- Enlace para saltar directo al contenido con lector de pantalla/teclado -->
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- Fondo “aurora” -->
+  <div aria-hidden="true" class="aurora"></div>
 
   <header class="site-header" role="banner">
     <div class="header-inner">
-      <div class="title-wrap">
-        <h1 class="title">Desarrollo Web en Entorno Cliente</h1>
-        <p class="subtitle">Ejercicios por trimestres y temas</p>
+      <div class="brand">
+        <!-- Logo inline para no depender de assets externos -->
+        <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="var(--accent)"/>
+            <stop offset="1" stop-color="var(--accent-3)"/>
+          </linearGradient></defs>
+          <rect rx="14" width="64" height="64" fill="url(#g)"/>
+          <path d="M16 40h12V24H16v16zm20 0h12V16H36v24z" fill="white" opacity=".95"/>
+        </svg>
+        <div>
+          <h1 class="title">Desarrollo Web en Entorno Cliente</h1>
+          <p class="subtitle">Índice interactivo de ejercicios</p>
+        </div>
       </div>
 
-      <div class="header-actions" role="group" aria-label="Acciones de la página">
-        <button id="toggle-theme" class="btn ghost" type="button" aria-pressed="false" title="Alternar tema (claro/oscuro)">
-          <span class="icon" aria-hidden="true">🌙</span>
-          <span class="btn-text">Tema</span>
+      <nav class="header-actions" aria-label="Acciones">
+        <button id="theme-toggle" class="btn ghost" type="button" title="Tema (claro/oscuro/solar)">
+          <span class="icon">🎨</span><span class="btn-text">Tema</span>
         </button>
-
-        <button id="expand-all" class="btn ghost" type="button" title="Expandir todos los apartados">
-          <span class="icon" aria-hidden="true">➕</span>
-          <span class="btn-text">Expandir</span>
+        <button id="contrast-toggle" class="btn ghost" type="button" title="Alto contraste">
+          <span class="icon">⚡</span><span class="btn-text">Contraste</span>
         </button>
+        <button id="expand-all" class="btn ghost" type="button" title="Expandir todo">
+          <span class="icon">➕</span><span class="btn-text">Expandir</span>
+        </button>
+        <button id="collapse-all" class="btn ghost" type="button" title="Contraer todo">
+          <span class="icon">➖</span><span class="btn-text">Contraer</span>
+        </button>
+        <button id="random" class="btn ghost" type="button" title="Ejercicio aleatorio (R)">
+          <span class="icon">🎲</span><span class="btn-text">Aleatorio</span>
+        </button>
+        <button id="help" class="btn" type="button" title="Ayuda (¿)">
+          <span class="icon">❓</span><span class="btn-text">Ayuda</span>
+        </button>
+      </nav>
+    </div>
 
-        <button id="collapse-all" class="btn ghost" type="button" title="Contraer todos los apartados">
-          <span class="icon" aria-hidden="true">➖</span>
-          <span class="btn-text">Contraer</span>
+    <!-- Barra de utilidad -->
+    <div class="utility-bar">
+      <div class="search-wrap">
+        <label class="search-label" for="q">Buscar</label>
+        <input id="q" class="search-input" type="search" placeholder="Busca por nombre, tema o ruta… (/)"/>
+        <div id="search-count" class="search-count" aria-live="polite"></div>
+      </div>
+
+      <div class="chips" role="group" aria-label="Filtros rápidos">
+        <!-- Se generan dinámicamente según los temas -->
+      </div>
+
+      <div class="view-toggle" role="group" aria-label="Vista">
+        <button id="view-list" class="btn small selected" type="button" title="Vista lista">
+          <span class="icon">☰</span><span class="btn-text">Lista</span>
+        </button>
+        <button id="view-cards" class="btn small" type="button" title="Vista tarjetas">
+          <span class="icon">▦</span><span class="btn-text">Tarjetas</span>
         </button>
       </div>
     </div>
   </header>
 
   <main id="contenido" class="container" role="main">
-    <section aria-labelledby="trimestres-heading">
-      <h2 id="trimestres-heading">Trimestres</h2>
+    <aside class="aside">
+      <h3 class="aside-title">Recientes</h3>
+      <ol id="recent-list" class="recent-list" aria-live="polite"></ol>
+
+      <div class="meta">
+        <button id="export-json" class="btn full" type="button" title="Exportar índice a JSON">
+          <span class="icon">⬇️</span><span>Exportar índice</span>
+        </button>
+      </div>
+
+      <div class="kbd-hint">Pulsa <kbd>?</kbd> para ver atajos</div>
+    </aside>
+
+    <section class="main-section" aria-labelledby="trimestres-heading">
+      <h2 id="trimestres-heading" class="visually-hidden">Trimestres</h2>
 
       <!-- TRIMESTRE 1 -->
       <details class="accordion" id="tri1">
@@ -54,7 +106,7 @@
             <span class="accordion__title">Tema 2</span>
             <span class="badge" data-count>0</span>
           </summary>
-          <ul class="link-list">
+          <ul class="link-list" data-tema="Tema 2">
             <li><a href="1er trimestre/Tema 2/Ejercicio1.1.html">Ejercicio 1.1</a></li>
             <li><a href="1er trimestre/Tema 2/Ejercicio1.2(Calculadora).html">Ejercicio 1.2 (Calculadora)</a></li>
             <li><a href="1er trimestre/Tema 2/Ejercicio1.3(MAP).html">Ejercicio 1.3 (MAP)</a></li>
@@ -70,7 +122,7 @@
             <span class="accordion__title">Tema 3</span>
             <span class="badge" data-count>0</span>
           </summary>
-          <ul class="link-list">
+          <ul class="link-list" data-tema="Tema 3">
             <li><a href="1er trimestre/Tema 3/Ejercicio4.html">Ejercicio 4</a></li>
             <li><a href="1er trimestre/Tema 3/Ejercicio6.html">Ejercicio 6</a></li>
             <li><a href="1er trimestre/Tema 3/Ejercicio9.html">Ejercicio 9</a></li>
@@ -81,106 +133,280 @@
         </details>
       </details>
 
-      <!-- Puedes añadir más <details> para 2º y 3º trimestre reutilizando los mismos estilos -->
+      <!-- Plantillas para + trimestres: duplica el bloque <details class="accordion" ...> -->
     </section>
   </main>
 
   <footer class="site-footer" role="contentinfo">
-    <small>&copy; 2025 Desarrollo Web en Entorno Cliente</small>
+    <small>&copy; 2025 DWEC</small>
     <button id="back-to-top" class="btn to-top" type="button" title="Volver arriba" aria-label="Volver arriba">↑</button>
   </footer>
 
-  <script>
-    // ---------- Utilidades ----------
-    const $ = (sel, ctx = document) => ctx.querySelector(sel);
-    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+  <!-- Modal ayuda -->
+  <dialog id="modal-help" class="modal">
+    <form method="dialog" class="modal-card">
+      <h3>Atajos de teclado</h3>
+      <ul class="shortcuts">
+        <li><kbd>/</kbd> Foco en buscador</li>
+        <li><kbd>R</kbd> Ejercicio aleatorio</li>
+        <li><kbd>E</kbd> Expandir todo</li>
+        <li><kbd>C</kbd> Contraer todo</li>
+        <li><kbd>T</kbd> Cambiar tema</li>
+        <li><kbd>?</kbd> Ver/Cerrar esta ayuda</li>
+      </ul>
+      <div class="modal-actions">
+        <button class="btn" value="close">Cerrar</button>
+      </div>
+    </form>
+  </dialog>
 
-    // ---------- Persistencia de tema ----------
+  <script>
+    // ===== Helpers =====
+    const $ = (s, c = document) => c.querySelector(s);
+    const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
     const root = document.documentElement;
-    const btnTheme = $('#toggle-theme');
-    const THEME_KEY = 'dwc_theme';
-    const applyTheme = (mode) => {
-      root.dataset.theme = mode; // [data-theme="light"|"dark"]
-      const dark = mode === 'dark';
-      btnTheme.setAttribute('aria-pressed', String(dark));
-      btnTheme.querySelector('.icon').textContent = dark ? '☀️' : '🌙';
-      // Ajusta color de la barra de navegador en móviles
-      const metaTheme = document.querySelector('meta[name="theme-color"]');
-      if (metaTheme) metaTheme.setAttribute('content', dark ? '#0f1020' : '#6c63ff');
-    };
-    const stored = localStorage.getItem(THEME_KEY);
-    const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
-    applyTheme(stored || (prefersDark ? 'dark' : 'light'));
-    btnTheme.addEventListener('click', () => {
-      const next = (root.dataset.theme === 'dark') ? 'light' : 'dark';
-      localStorage.setItem(THEME_KEY, next);
-      applyTheme(next);
+    const store = (k,v)=>localStorage.setItem(k,JSON.stringify(v));
+    const load = (k,d)=>{try{return JSON.parse(localStorage.getItem(k)) ?? d}catch{ return d }};
+
+    const THEME_KEY = 'dwec_theme';
+    const CONTRAST_KEY = 'dwec_contrast';
+    const OPEN_KEY = 'dwec_open';
+    const RECENT_KEY = 'dwec_recent';
+    const VIEW_KEY = 'dwec_view';
+
+    const normaliza = (t) => t.toLowerCase()
+      .normalize('NFD').replace(/\p{Diacritic}/gu,'')
+      .replace(/\s+/g,' ').trim();
+
+    // ===== Tema (ciclo: light → dark → solar) =====
+    const themes = ['light','dark','solar'];
+    const themeBtn = $('#theme-toggle');
+    const contrastBtn = $('#contrast-toggle');
+
+    function applyTheme(mode){
+      root.dataset.theme = mode;
+      const metaTheme = $('meta[name="theme-color"]');
+      const mapColor = { light:'#7c5cff', dark:'#0b0b17', solar:'#ffd166' };
+      if (metaTheme) metaTheme.setAttribute('content', mapColor[mode] || '#7c5cff');
+      store(THEME_KEY, mode);
+    }
+    applyTheme(load(THEME_KEY, (()=>matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')()));
+
+    themeBtn.addEventListener('click', ()=>{
+      const idx = themes.indexOf(root.dataset.theme);
+      applyTheme(themes[(idx+1)%themes.length]);
     });
 
-    // ---------- Contadores de ejercicios ----------
-    function updateBadges() {
-      $$('details').forEach(d => {
+    // Alto contraste (añade outlines y sube contraste)
+    function applyContrast(on){
+      root.toggleAttribute('data-contrast', !!on);
+      store(CONTRAST_KEY, !!on);
+    }
+    applyContrast(load(CONTRAST_KEY,false));
+    contrastBtn.addEventListener('click', ()=>applyContrast(!(root.hasAttribute('data-contrast'))));
+
+    // ===== Abrir/cerrar con persistencia + acordeón por nivel =====
+    const openSaved = new Set(load(OPEN_KEY,[]));
+    $$('details').forEach(d=>{ if(openSaved.has(d.id)) d.open = true; });
+
+    function saveOpen(){
+      const ids = $$('details').filter(d=>d.id && d.open).map(d=>d.id);
+      store(OPEN_KEY, ids);
+    }
+    $$('details').forEach(d=>{
+      d.addEventListener('toggle', ()=>{
+        if(d.open){
+          const parent = d.parentElement;
+          $$('.accordion', parent).forEach(sib=>{ if(sib!==d && sib.open) sib.open=false; });
+        }
+        saveOpen(); updateBreadcrumb();
+      });
+    });
+
+    // ===== Contadores y chips de tema =====
+    function updateBadges(){
+      $$('details').forEach(d=>{
         const list = $('ul.link-list', d);
         const badge = $('[data-count]', d);
-        if (badge) {
-          const count = list ? list.querySelectorAll('a').length : $$('.nested', d).length;
-          badge.textContent = count;
-          badge.title = count + (list ? ' ejercicio(s)' : ' tema(s)');
-        }
+        if(!badge) return;
+        const count = list ? list.querySelectorAll('a').length : $$('.nested', d).length;
+        badge.textContent = count;
+        badge.title = count + (list?' ejercicio(s)':' tema(s)');
       });
     }
     updateBadges();
 
-    // ---------- Estado abierto/cerrado + acordeón por nivel ----------
-    const OPEN_KEY = 'dwc_open_ids';
-    const openSet = new Set(JSON.parse(localStorage.getItem(OPEN_KEY) || '[]'));
-    $$('details').forEach(d => { if (openSet.has(d.id)) d.open = true; });
-
-    function saveOpenState() {
-      const ids = $$('details').filter(d => d.id && d.open).map(d => d.id);
-      localStorage.setItem(OPEN_KEY, JSON.stringify(ids));
-    }
-
-    // Acordeón por hermanos (un abierto por nivel)
-    $$('details').forEach(d => {
-      d.addEventListener('toggle', () => {
-        if (d.open) {
-          const parent = d.parentElement;
-          $$('.accordion', parent).forEach(sib => {
-            if (sib !== d && sib.open) sib.open = false;
-          });
-        }
-        d.classList.toggle('open', d.open);
-        saveOpenState();
+    function buildChips(){
+      const temas = new Set($$('.link-list').map(ul=>ul.dataset.tema).filter(Boolean));
+      const wrap = $('.chips');
+      wrap.innerHTML = '';
+      const all = document.createElement('button');
+      all.className = 'chip selected'; all.type='button'; all.textContent='Todo';
+      all.dataset.value = '';
+      wrap.appendChild(all);
+      temas.forEach(t=>{
+        const b=document.createElement('button');
+        b.className='chip'; b.type='button'; b.textContent=t; b.dataset.value=normaliza(t);
+        wrap.appendChild(b);
       });
+    }
+    buildChips();
+
+    // ===== Búsqueda + filtro por chips + vista =====
+    const q = $('#q');
+    const countEl = $('#search-count');
+    const chips = $('.chips');
+    let activeChip = ''; // normalizado
+    let view = load(VIEW_KEY,'list');
+    const viewListBtn = $('#view-list');
+    const viewCardsBtn = $('#view-cards');
+
+    function setView(v){
+      view = v;
+      root.dataset.view = v;
+      viewListBtn.classList.toggle('selected', v==='list');
+      viewCardsBtn.classList.toggle('selected', v==='cards');
+      store(VIEW_KEY,v);
+    }
+    setView(view);
+
+    chips.addEventListener('click', (e)=>{
+      const b = e.target.closest('.chip'); if(!b) return;
+      $$('.chip', chips).forEach(c=>c.classList.remove('selected'));
+      b.classList.add('selected');
+      activeChip = b.dataset.value || '';
+      filtrar();
     });
 
-    // ---------- Accesibilidad de teclado en <summary> ----------
-    $$('summary').forEach(sum => {
-      sum.addEventListener('keydown', (e) => {
-        if (e.key === ' ' || e.key === 'Enter') {
-          e.preventDefault();
-          sum.click();
-        }
+    viewListBtn.addEventListener('click', ()=>setView('list'));
+    viewCardsBtn.addEventListener('click', ()=>setView('cards'));
+
+    function filtrar(){
+      const term = normaliza(q.value);
+      let visibles = 0;
+
+      $$('details.accordion.nested').forEach(tema=>{
+        const tag = normaliza($('ul.link-list',tema)?.dataset.tema||'');
+        let showTema = false;
+        $$('li', tema).forEach(li=>{
+          const texto = normaliza(li.textContent + ' ' + $('a',li).getAttribute('href'));
+          const okChip = !activeChip || tag===activeChip;
+          const okText = !term || texto.includes(term);
+          const on = okChip && okText;
+          li.hidden = !on;
+          if(on) {visibles++; showTema=true;}
+        });
+        tema.hidden = !showTema && (term || activeChip);
+        if(showTema && (term || activeChip)) tema.open = true;
       });
+
+      // Trimestres visibles
+      $$('details.accordion:not(.nested)').forEach(trim=>{
+        const visibleTemas = $$('.nested', trim).some(t=>!t.hidden);
+        trim.hidden = !visibleTemas && (term || activeChip);
+        if(visibleTemas && (term || activeChip)) trim.open = true;
+      });
+
+      countEl.textContent = term || activeChip ? `${visibles} resultado(s)` : '';
+      updateBadges();
+    }
+    q.addEventListener('input', filtrar);
+
+    // Atajos
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === '/' && document.activeElement !== q){ e.preventDefault(); q.focus(); q.select(); }
+      if(e.key.toLowerCase() === 'e'){ $('#expand-all').click(); }
+      if(e.key.toLowerCase() === 'c'){ $('#collapse-all').click(); }
+      if(e.key.toLowerCase() === 't'){ themeBtn.click(); }
+      if(e.key.toLowerCase() === 'r'){ $('#random').click(); }
+      if(e.key === '?' ){ $('#help').click(); }
     });
 
-    // ---------- Soporte de anclas (hash) ----------
-    if (location.hash) {
-      const target = document.getElementById(location.hash.slice(1));
-      if (target && target.tagName === 'DETAILS') {
-        target.open = true;
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
+    // ===== Expandir / Contraer =====
+    $('#expand-all').addEventListener('click', ()=>{
+      $$('details.accordion').forEach(d=>d.open=true);
+      saveOpen();
+    });
+    $('#collapse-all').addEventListener('click', ()=>{
+      $$('details.accordion').forEach(d=>d.open=false);
+      saveOpen();
+    });
 
-    // ---------- Volver arriba ----------
+    // ===== Breadcrumb dinámico =====
+    function updateBreadcrumb(){
+      const open = $$('details[open] > summary .accordion__title').map(n=>n.textContent.trim());
+      root.style.setProperty('--breadcrumb', `"${open.join(' › ')}"`);
+    }
+    updateBreadcrumb();
+
+    // ===== Aleatorio =====
+    $('#random').addEventListener('click', ()=>{
+      const links = $$('ul.link-list a').filter(a => !a.closest('li').hidden && !a.closest('details').hidden);
+      if(!links.length) return;
+      const pick = links[Math.floor(Math.random()*links.length)];
+      pick.click();
+    });
+
+    // ===== Recientes =====
+    function addRecent(href, text){
+      const items = load(RECENT_KEY,[]);
+      const next = [[href,text,Date.now()], ...items.filter(([h])=>h!==href)].slice(0,6);
+      store(RECENT_KEY,next);
+      renderRecent();
+    }
+    function renderRecent(){
+      const list = $('#recent-list');
+      list.innerHTML = '';
+      const items = load(RECENT_KEY,[]);
+      if(!items.length){ list.innerHTML='<li class="muted">Aún no has abierto ejercicios.</li>'; return; }
+      items.forEach(([href,text])=>{
+        const li=document.createElement('li');
+        li.innerHTML = `<a href="${href}">${text}</a>`;
+        list.appendChild(li);
+      });
+    }
+    renderRecent();
+    $$('ul.link-list a').forEach(a=>{
+      a.addEventListener('click', ()=> addRecent(a.getAttribute('href'), a.textContent.trim()));
+    });
+
+    // ===== Exportar índice a JSON =====
+    $('#export-json').addEventListener('click',()=>{
+      const data = $$('details.accordion:not(.nested)').map(trim=>{
+        const tituloTrim = $('> summary .accordion__title', trim).textContent.trim();
+        const temas = $$('.nested', trim).map(tema=>{
+          const tituloTema = $('> summary .accordion__title', tema).textContent.trim();
+          const ejercicios = $$('ul.link-list a', tema).map(a=>({ nombre: a.textContent.trim(), href: a.getAttribute('href') }));
+          return { tituloTema, ejercicios };
+        });
+        return { tituloTrimestre: tituloTrim, temas };
+      });
+      const blob = new Blob([JSON.stringify({ generado: new Date().toISOString(), data }, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'indice-dwec.json'; a.click();
+      setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    });
+
+    // ===== Volver arriba =====
     const toTop = $('#back-to-top');
-    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    document.addEventListener('scroll', () => {
+    toTop.addEventListener('click', ()=>window.scrollTo({ top: 0, behavior: 'smooth' }));
+    document.addEventListener('scroll', ()=>{
       toTop.hidden = window.scrollY < 400;
-    }, { passive: true });
+    }, { passive:true });
     toTop.hidden = true;
+
+    // ===== Modal ayuda =====
+    const modal = $('#modal-help');
+    $('#help').addEventListener('click', ()=>{
+      modal.open ? modal.close() : modal.showModal();
+    });
+
+    // ===== Hash abrir =====
+    if(location.hash){
+      const t = document.getElementById(location.hash.slice(1));
+      if(t?.tagName==='DETAILS'){ t.open=true; t.scrollIntoView({behavior:'smooth', block:'start'}); }
+    }
   </script>
 </body>
 </html>
