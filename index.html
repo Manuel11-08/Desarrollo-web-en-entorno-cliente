@@ -13,7 +13,10 @@
 
   <header class="site-header" role="banner">
     <div class="header-inner">
-      <h1 class="title">Desarrollo Web en Entorno Cliente</h1>
+      <div class="title-wrap">
+        <h1 class="title">Desarrollo Web en Entorno Cliente</h1>
+        <p class="subtitle">Ejercicios por trimestres y temas</p>
+      </div>
 
       <div class="header-actions" role="group" aria-label="Acciones de la página">
         <button id="toggle-theme" class="btn ghost" type="button" aria-pressed="false" title="Alternar tema (claro/oscuro)">
@@ -31,12 +34,6 @@
           <span class="btn-text">Contraer</span>
         </button>
       </div>
-    </div>
-
-    <div class="search-wrap">
-      <label class="search-label" for="filtro">Buscar ejercicios</label>
-      <input id="filtro" class="search-input" type="search" placeholder="Filtrar por tema o nombre de ejercicio..." autocomplete="off" />
-      <div id="search-count" class="search-count" aria-live="polite"></div>
     </div>
   </header>
 
@@ -84,7 +81,7 @@
         </details>
       </details>
 
-      <!-- Aquí podrías añadir más <details> para 2º y 3º trimestre reutilizando los mismos estilos -->
+      <!-- Puedes añadir más <details> para 2º y 3º trimestre reutilizando los mismos estilos -->
     </section>
   </main>
 
@@ -107,6 +104,9 @@
       const dark = mode === 'dark';
       btnTheme.setAttribute('aria-pressed', String(dark));
       btnTheme.querySelector('.icon').textContent = dark ? '☀️' : '🌙';
+      // Ajusta color de la barra de navegador en móviles
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) metaTheme.setAttribute('content', dark ? '#0f1020' : '#6c63ff');
     };
     const stored = localStorage.getItem(THEME_KEY);
     const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
@@ -145,7 +145,6 @@
     $$('details').forEach(d => {
       d.addEventListener('toggle', () => {
         if (d.open) {
-          // cerrar hermanos al mismo nivel
           const parent = d.parentElement;
           $$('.accordion', parent).forEach(sib => {
             if (sib !== d && sib.open) sib.open = false;
@@ -156,58 +155,7 @@
       });
     });
 
-    // ---------- Expandir / Contraer todo ----------
-    $('#expand-all').addEventListener('click', () => {
-      $$('details.accordion').forEach(d => d.open = true);
-      saveOpenState();
-    });
-    $('#collapse-all').addEventListener('click', () => {
-      $$('details.accordion').forEach(d => d.open = false);
-      saveOpenState();
-    });
-
-    // ---------- Filtro de búsqueda ----------
-    const input = $('#filtro');
-    const countEl = $('#search-count');
-    function normaliza(txt) {
-      return txt.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
-    }
-    function filtrar() {
-      const q = normaliza(input.value.trim());
-      let visibles = 0;
-
-      // Mostrar/ocultar <li> según coincidencia y abrir temas que tengan resultados
-      $$('details.accordion.nested').forEach(tema => {
-        const items = $$('li', tema);
-        let hayCoincidencias = false;
-
-        items.forEach(li => {
-          const t = normaliza(li.textContent);
-          const ok = !q || t.includes(q);
-          li.style.display = ok ? '' : 'none';
-          if (ok) hayCoincidencias = true;
-        });
-
-        // si hay coincidencias, abrir el tema
-        tema.open = hayCoincidencias || !q ? tema.open : false;
-        tema.style.display = hayCoincidencias || !q ? '' : 'none';
-        if (hayCoincidencias) visibles += items.filter(li => li.style.display !== 'none').length;
-      });
-
-      // Mostrar/ocultar trimestres según sus temas visibles
-      $$('details.accordion:not(.nested)').forEach(trim => {
-        const visibleTemas = $$('.nested', trim).some(t => t.style.display !== 'none');
-        trim.style.display = visibleTemas || !q ? '' : 'none';
-        if (q && visibleTemas) trim.open = true;
-      });
-
-      countEl.textContent = q ? `${visibles} resultado(s)` : '';
-      updateBadges();
-    }
-    input.addEventListener('input', filtrar);
-
     // ---------- Accesibilidad de teclado en <summary> ----------
-    // Permite activar con Enter/Espacio correctamente en algunos navegadores antiguos
     $$('summary').forEach(sum => {
       sum.addEventListener('keydown', (e) => {
         if (e.key === ' ' || e.key === 'Enter') {
@@ -216,6 +164,15 @@
         }
       });
     });
+
+    // ---------- Soporte de anclas (hash) ----------
+    if (location.hash) {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target && target.tagName === 'DETAILS') {
+        target.open = true;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
 
     // ---------- Volver arriba ----------
     const toTop = $('#back-to-top');
