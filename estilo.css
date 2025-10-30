@@ -105,6 +105,13 @@ body {
   align-items: center;
 }
 
+.title-wrap { display: grid; gap: .25rem; }
+.subtitle {
+  margin: 0;
+  font-size: .95rem;
+  opacity: .9;
+}
+
 .title {
   margin: 0;
   font-size: clamp(1.5rem, 2.2vw + 1rem, 2.2rem);
@@ -116,47 +123,6 @@ body {
   gap: .5rem;
   align-items: center;
   justify-self: end;
-}
-
-.search-wrap {
-  max-width: 1000px;
-  margin: 0 auto 1rem auto;
-  padding: 0 1rem 1rem 1rem;
-}
-
-.search-label {
-  position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.search-input {
-  width: 100%;
-  font-size: 1rem;
-  padding: .9rem 1rem;
-  border-radius: .9rem;
-  border: 1px solid rgba(255,255,255,.5);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 4px 14px rgba(0,0,0,.12);
-  outline: none;
-}
-:root[data-theme="dark"] .search-input {
-  border: 1px solid rgba(255,255,255,.15);
-  background: rgba(255,255,255,.06);
-  color: #fff;
-}
-
-.search-input::placeholder { opacity: .8; }
-.search-input:focus { outline: var(--focus); }
-
-.search-count {
-  margin-top: .5rem;
-  font-size: .95rem;
-  color: #eef;
-  opacity: .9;
 }
 
 /* =========================================
@@ -234,6 +200,8 @@ a:focus-visible { outline: var(--focus); border-radius: .3rem; }
 /* =========================================
    Details & Summary (acordeón)
 ========================================= */
+.details-grid { display: grid; gap: 1rem; }
+
 details.accordion {
   background: color-mix(in oklab, var(--card), var(--bg) 25%);
   border: 1px solid var(--border);
@@ -308,6 +276,7 @@ summary.accordion__summary:focus-visible { outline: var(--focus); }
   text-align: center;
   padding: 1.5rem 1rem 3.5rem;
   font-size: .95rem;
+  color: #muted;
   color: var(--muted);
   background: color-mix(in oklab, var(--bg), #000 0%);
   margin-top: 3rem;
