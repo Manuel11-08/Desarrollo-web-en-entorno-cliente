@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function pedirYSumarBrowser() {
+  const texto = prompt("Introduce números enteros separados por comas (ejemplo: 1,2,3,4):");
+  if (texto === null) return; 
+  const nums = texto.split(",")
+    .map(s => s.trim())
+    .filter(s => s !== "")
+    .map(Number)
+    .filter(n => !Number.isNaN(n));
+  const suma = nums.reduce((acc, v) => acc + v, 0);
+  alert("Suma: " + suma);
+}
+
+
+pedirYSumarBrowser();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     
+  // función que devuelve el máximo de un array de números
+  function maxArray(arr) {
+    if (!Array.isArray(arr) || arr.length === 0) {
+      throw new Error('Pasa un array con al menos un número');
+    }
+    let max = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+      if (typeof arr[i] !== 'number' || Number.isNaN(arr[i])) continue;
+      if (arr[i] > max) max = arr[i];
+    }
+    return max;
+  }
+
+  // función que pide al usuario y muestra el máximo
+  function pedirYMostrarMax() {
+    const texto = prompt('Introduce números separados por comas (ej: 11,3,16,90):');
+    if (texto === null) return; // usuario canceló
+    const nums = texto
+      .split(',')
+      .map(s => s.trim())
+      .filter(s => s !== '')
+      .map(Number)
+      .filter(n => !Number.isNaN(n));
+    if (nums.length === 0) {
+      alert('No se han introducido números válidos.');
+      return;
+    }
+    const max = maxArray(nums);
+    alert('Máximo: ' + max);
+    console.log('Máximo:', max);
+  }
+
+  pedirYMostrarMax();
+
+    </script>
+</body>
+</html>

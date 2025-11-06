@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+  
+  function diasDelMes(mes, anio) {
+    mes = Number(mes);
+    anio = Number(anio);
+    if (!Number.isInteger(mes) || mes < 1 || mes > 12) {
+      throw new Error('Mes debe ser 1-12');
+    }
+    if (!Number.isFinite(anio)) {
+      throw new Error('Año no válido');
+    }
+    if (mes === 2) {
+      const bisiesto = (anio % 4 === 0 && anio % 100 !== 0) || (anio % 400 === 0);
+      return bisiesto ? 29 : 28;
+    }
+    return [4, 6, 9, 11].includes(mes) ? 30 : 31;
+  }
+
+  
+  function pedirYMostrarDias() {
+    const m = prompt('Introduce el número de mes (1-12):');
+    if (m === null) return; 
+    const a = prompt('Introduce el año:');
+    if (a === null) return;
+    try {
+      const dias = diasDelMes(m, a);
+      alert('Días: ' + dias);
+      console.log('Días: ' + dias);
+    } catch (e) {
+      alert('Error: ' + e.message);
+      console.error(e);
+    }
+  }
+
+  pedirYMostrarDias();
+    </script>
+</body>
+</html>
