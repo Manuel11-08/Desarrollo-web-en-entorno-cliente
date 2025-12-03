@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+// diferencia en días entre dos fechas
+function diferenciaDias(fecha1, fecha2) {
+  var msPorDia = 1000 * 60 * 60 * 24;
+  var diferenciaMs = Math.abs(fecha2.getTime() - fecha1.getTime());
+  var dias = Math.round(diferenciaMs / msPorDia);
+  return dias;
+}
+
+// ejemplo
+var f1 = new Date(2024, 0, 1);  // 1 enero 2024
+var f2 = new Date(2024, 0, 10); // 10 enero 2024
+alert(diferenciaDias(f1, f2));
+   
+</script>
+
+</body>
+</html>

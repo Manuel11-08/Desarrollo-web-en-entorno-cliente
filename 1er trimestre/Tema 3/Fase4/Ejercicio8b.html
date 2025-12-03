@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+
+// devuelve el elemento que más se repite
+function masFrecuente(array) {
+  var contador = {};
+  var masVeces = 0;
+  var elementoMasFrecuente = null;
+
+  for (var i = 0; i < array.length; i++) {
+    var elem = array[i];
+
+    if (contador[elem] === undefined) {
+      contador[elem] = 1;
+    } else {
+      contador[elem] = contador[elem] + 1;
+    }
+
+    if (contador[elem] > masVeces) {
+      masVeces = contador[elem];
+      elementoMasFrecuente = elem;
+    }
+  }
+
+  return elementoMasFrecuente;
+}
+
+// ejemplo
+alert(masFrecuente([1, 2, 2, 3, 3, 3, 4]));
+
+</script>
+
+</body>
+</html>

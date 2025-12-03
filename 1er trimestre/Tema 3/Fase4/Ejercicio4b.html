@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+// devuelve los días del mes
+function diasDelMes(mes, anio) {
+  var dias = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  // comprueba año bisiesto
+  var esBisiesto =
+    (anio % 4 === 0 && anio % 100 !== 0) || (anio % 400 === 0);
+
+  if (mes === 2 && esBisiesto) {
+    return 29;
+  } else {
+    return dias[mes - 1];
+  }
+}
+
+// ejemplo
+alert(diasDelMes(2, 2024));
+
+</script>
+
+</body>
+</html>
