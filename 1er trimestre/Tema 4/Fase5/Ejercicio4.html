@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 4</title>
+</head>
+<body>
+
+<p>Haz clic en cualquier parte de la página.</p>
+
+<script>
+
+// 0 = izquierdo, 2 = derecho
+document.onmousedown = function (e) {
+  var boton = e.button;  // qué botón se pulsó
+  if (boton === 0) {
+    alert("Has pulsado el botón IZQUIERDO");
+  } else if (boton === 2) {
+    alert("Has pulsado el botón DERECHO");
+  } else {
+    alert("Has pulsado otro botón del ratón");
+  }
+};
+
+// opcional: desactivar menú derecho para que se vea el alert
+document.oncontextmenu = function (e) {
+  e.preventDefault();
+  return false;
+};
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 2</title>
+</head>
+<body>
+
+<div id="mensaje" style="width:300px;height:100px;border:1px solid black;">
+  Cuadro de mensaje
+</div>
+
+<script>
+
+// al pulsar botón del ratón: amarillo
+document.onmousedown = function () {
+  document.getElementById("mensaje").style.backgroundColor = "#FFFF00";
+};
+
+// al pulsar una tecla: azul
+document.onkeydown = function () {
+  document.getElementById("mensaje").style.backgroundColor = "#CCE6FF";
+};
+
+// al mover el ratón: blanco
+document.onmousemove = function () {
+  document.getElementById("mensaje").style.backgroundColor = "white";
+};
+
+</script>
+
+</body>
+</html>

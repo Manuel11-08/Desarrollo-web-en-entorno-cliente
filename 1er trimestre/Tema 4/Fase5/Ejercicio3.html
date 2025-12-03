@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 3</title>
+</head>
+<body>
+
+<p>Botón derecho deshabilitado en toda la página.</p>
+
+<script>
+    
+// bloquea menú botón derecho
+document.oncontextmenu = function (e) {
+  e.preventDefault();
+  return false;
+};
+
+</script>
+
+</body>
+</html>

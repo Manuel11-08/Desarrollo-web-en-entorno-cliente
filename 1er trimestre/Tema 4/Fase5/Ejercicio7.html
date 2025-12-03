@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 7</title>
+</head>
+<body>
+
+<div id="caja" style="position:absolute;left:100px;top:100px;width:50px;height:50px;background:red;"></div>
+
+<p>Usa las flechas o las teclas 2, 4, 6, 8.</p>
+
+<script>
+  let caja = document.getElementById("caja");
+  let x = 100;
+  let y = 100;
+  let paso = 10;
+
+  document.onkeydown = function(e) {
+    if (e.key === "ArrowLeft" || e.key === "4") {
+      x -= paso;
+    } else if (e.key === "ArrowRight" || e.key === "6") {
+      x += paso;
+    } else if (e.key === "ArrowUp" || e.key === "8") {
+      y -= paso;
+    } else if (e.key === "ArrowDown" || e.key === "2") {
+      y += paso;
+    }
+
+    caja.style.left = x + "px";
+    caja.style.top = y + "px";
+  };
+</script>
+
+</body>
+</html>

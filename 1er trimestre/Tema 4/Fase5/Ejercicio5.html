@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 5</title>
+</head>
+<body>
+
+<img src="foto1.jpg" width="100" onmouseover="mostrarUrl(this)">
+<img src="foto2.jpg" width="100" onmouseover="mostrarUrl(this)">
+<img src="https://ejemplo.com/foto3.jpg" width="100" onmouseover="mostrarUrl(this)">
+
+<p id="info">Pasa el ratón por encima de una imagen.</p>
+
+<script>
+
+// muestra la ruta de la imagen
+function mostrarUrl(imagen) {
+  var url = imagen.src;
+  document.getElementById("info").innerHTML = "URL: " + url;
+}
+
+</script>
+
+</body>
+</html>
