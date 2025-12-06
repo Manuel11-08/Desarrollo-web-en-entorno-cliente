@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Función Aplanar</title>
+</head>
+<body>
+
+  <h1>Ejemplo de Aplanar un Array</h1>
+
+  <p>Introduce un array en formato JSON:</p>
+  <input type="text" id="inputArray" value='[1, [2, [3, 4]], 5]' />
+  <button onclick="mostrarAplanado()">Aplanar Array</button>
+
+  <p>Resultado:</p>
+  <p id="resultado"></p>
+
+  <script>
+    // Función recursiva para aplanar un array
+    function aplanar(arr) {
+      return arr.reduce((acc, curr) => {
+        return Array.isArray(curr) ? acc.concat(aplanar(curr)) : acc.concat(curr);
+      }, []);
+    }
+
+    // Función para mostrar el resultado en el navegador
+    function mostrarAplanado() {
+      const input = document.getElementById("inputArray").value;
+      try {
+        const array = JSON.parse(input); // Convierte el texto en un array
+        const resultado = aplanar(array); // Llama a la función aplanar
+        document.getElementById("resultado").innerText = JSON.stringify(resultado); // Muestra el resultado
+      } catch (e) {
+        document.getElementById("resultado").innerText = "Error: Entrada inválida. Asegúrate de que es un array en formato JSON.";
+      }
+    }
+  </script>
+
+</body>
+</html>
