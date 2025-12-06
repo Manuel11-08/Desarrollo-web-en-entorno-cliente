@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplanar Sistema de Archivos</title>
+</head>
+<body>
+
+  <h1>Ejemplo de Aplanar un Sistema de Archivos</h1>
+
+  <p>El sistema de archivos:</p>
+  <pre id="fsDisplay"></pre>
+
+  <button onclick="mostrarArchivos()">Aplanar Sistema de Archivos</button>
+
+  <p>Resultado:</p>
+  <pre id="resultado"></pre>
+
+  <script>
+    // Representación del sistema de archivos como objeto
+    const fs = {
+      carpeta1: {
+        archivo1: "contenido1",
+        archivo2: "contenido2",
+        subcarpeta: {
+          archivo3: "contenido3"
+        }
+      },
+      carpeta2: {
+        archivo4: "contenido4"
+      }
+    };
+
+    // Función recursiva para aplanar el sistema de archivos
+    function aplanarFS(sistema, ruta = '') {
+      let archivos = [];
+
+      for (let clave in sistema) {
+        const nuevaRuta = ruta ? `${ruta}/${clave}` : clave;
+        if (typeof sistema[clave] === 'object') {
+          // Si es un objeto (subcarpeta), llamamos recursivamente
+          archivos = archivos.concat(aplanarFS(sistema[clave], nuevaRuta));
+        } else {
+          // Si es un archivo, lo agregamos al array
+          archivos.push(nuevaRuta);
+        }
+      }
+
+      return archivos;
+    }
+
+    // Función para mostrar el sistema de archivos y el resultado aplanado
+    function mostrarArchivos() {
+      // Muestra el sistema de archivos
+      document.getElementById('fsDisplay').innerText = JSON.stringify(fs, null, 2);
+
+      // Aplanar el sistema de archivos y mostrar los resultados
+      const archivosAplanados = aplanarFS(fs);
+      document.getElementById('resultado').innerText = JSON.stringify(archivosAplanados, null, 2);
+    }
+  </script>
+
+</body>
+</html>
