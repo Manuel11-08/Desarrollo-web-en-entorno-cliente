@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicios Recursivos</title>
+</head>
+<body>
+
+  <h1>Funciones Recursivas</h1>
+
+  <h2>1. Listar Archivos</h2>
+  <p>El sistema de archivos:</p>
+  <pre id="fsDisplay"></pre>
+  <button onclick="mostrarArchivos()">Listar Archivos</button>
+  <p>Resultado:</p>
+  <pre id="archivosResultado"></pre>
+
+  <h2>2. Permutar un Array</h2>
+  <p>Array a permutar:</p>
+  <input type="text" id="inputArray" value="[1, 2, 3]" />
+  <button onclick="mostrarPermutaciones()">Generar Permutaciones</button>
+  <p>Resultado:</p>
+  <pre id="permutacionesResultado"></pre>
+
+  <script>
+    // Función recursiva para listar archivos
+    function listarArchivos(obj) {
+      let archivos = [];
+
+      for (let clave in obj) {
+        if (typeof obj[clave] === 'object') {
+          // Si es una subcarpeta, recursivamente buscar archivos
+          archivos = archivos.concat(listarArchivos(obj[clave]));
+        } else {
+          // Si es un archivo, lo agregamos al array
+          archivos.push(clave);
+        }
+      }
+
+      return archivos;
+    }
+
+    // Función para mostrar los archivos
+    function mostrarArchivos() {
+      // Ejemplo de sistema de archivos
+      const fs = {
+        carpeta1: {
+          archivo1: "contenido1",
+          archivo2: "contenido2",
+          subcarpeta: {
+            archivo3: "contenido3"
+          }
+        },
+        carpeta2: {
+          archivo4: "contenido4"
+        }
+      };
+
+      // Mostrar el sistema de archivos original
+      document.getElementById('fsDisplay').innerText = JSON.stringify(fs, null, 2);
+
+      // Llamar a la función recursiva listarArchivos
+      const archivos = listarArchivos(fs);
+
+      // Mostrar el resultado
+      document.getElementById('archivosResultado').innerText = JSON.stringify(archivos, null, 2);
+    }
+
+    // Función recursiva para generar todas las permutaciones de un array
+    function permutar(arr) {
+      if (arr.length <= 1) {
+        return [arr]; // Caso base, si el array tiene 1 o 0 elementos, solo hay una permutación
+      }
+
+      const permutaciones = [];
+      for (let i = 0; i < arr.length; i++) {
+        const resto = arr.slice(0, i).concat(arr.slice(i + 1)); // Eliminar el elemento actual
+        const subPermutaciones = permutar(resto); // Permutar el resto del array
+        for (let perm of subPermutaciones) {
+          permutaciones.push([arr[i], ...perm]); // Agregar el elemento actual a cada permutación
+        }
+      }
+      return permutaciones;
+    }
+
+    // Función para mostrar las permutaciones
+    function mostrarPermutaciones() {
+      // Obtener el array ingresado por el usuario
+      const input = document.getElementById('inputArray').value;
+      const arr = JSON.parse(input); // Convertir el texto en un array
+
+      // Llamar a la función recursiva permutar
+      const permutaciones = permutar(arr);
+
+      // Mostrar el resultado
+      document.getElementById('permutacionesResultado').innerText = JSON.stringify(permutaciones, null, 2);
+    }
+  </script>
+
+</body>
+</html>
